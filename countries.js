@@ -132,7 +132,6 @@ let countries = [
     count: 52262343
   },
   { name: "Uzbekistan", code: "UZ", cities: 1, locations: 1, count: 10851 },
-  { name: "Viet Nam", code: "VN", cities: 2, locations: 3, count: 56292 },
-  { code: "CE", cities: 1, locations: 1, count: 458 }
+  { name: "Viet Nam", code: "VN", cities: 2, locations: 3, count: 56292 }
 ];
 export { countries };

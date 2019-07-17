@@ -1,0 +1,23 @@
+{
+  "name": "polluion-checker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "countries.js",
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bankot/polluion-checker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bankot/polluion-checker/issues"
+  },
+  "homepage": "https://github.com/Bankot/polluion-checker",
+  "dependencies": {
+    "gh-pages": "^2.0.1"
+  }
+}

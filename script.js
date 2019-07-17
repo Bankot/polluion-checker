@@ -8,30 +8,34 @@ window.addEventListener("DOMContentLoaded", event => {
       document.getElementById("country-select").appendChild(option);
     });
   };
-  addSelect();
-  document.getElementById("submit-select").addEventListener("click", e => {
-    e.preventDefault();
+  document.getElementById("submit-select").addEventListener("click", () => {
+    document.getElementById("submit-select").disabled = true;
     document.getElementById("info-container").innerHTML = "";
     addLoader("info-container");
     let selectValue = document.getElementById("country-select").value;
     getInfo(getCities(selectValue));
   });
-  const getCities = async city => {
+  const getCities = async country => {
     let citiesList = [];
-
+    let parameter = document.getElementById("parameter").value;
     await fetch(
-      `https://api.openaq.org/v1/measurements?limit=300&country=${city}&order_by[]=value&order_by[]=date&sort=desc&parameter=${`so2`}`
+      `https://api.openaq.org/v1/measurements?limit=300&country=${country}&order_by[]=value&order_by[]=date&sort=desc&parameter=${parameter}`
     )
       .then(res => res.json())
       .then(city => {
-        city.results.map(city => {
-          if (
-            !citiesList.some(name => name.city === city.city) &&
-            citiesList.length < 10
-          ) {
-            citiesList.push(city);
-          }
-        });
+        if (city.results.length) {
+          city.results.map(city => {
+            if (
+              !citiesList.some(name => name.city === city.city) &&
+              citiesList.length < 10
+            ) {
+              citiesList.push(city);
+            }
+          });
+        } else {
+          alert("API ERROR, try another country!");
+          window.location.reload();
+        }
       })
       .catch(err => {
         console.error(err);
@@ -47,7 +51,11 @@ window.addEventListener("DOMContentLoaded", event => {
           }`
         )
           .then(res => res.json())
-          .then(res => drawInfo(res[0], res[2], n.unit, n.parameter, n.value));
+          .then(res => drawInfo(res[0], res[2], n.unit, n.parameter, n.value))
+          .catch(err => {
+            window.location.reload();
+            alert("Too many requests, wait a while and try again! :)");
+          });
       });
     });
   };
@@ -59,7 +67,7 @@ window.addEventListener("DOMContentLoaded", event => {
     //H1
     let h2 = document.createElement("h2");
     h2.addEventListener("click", () => {
-      if (p2.innerHTML) {
+      if (p2.innerHTML.length > 2) {
         p2.classList.toggle("info-container__item__p2--active");
       } else {
         alert("No info for this city :(");
@@ -81,6 +89,7 @@ window.addEventListener("DOMContentLoaded", event => {
     divContainer.appendChild(p2);
     document.getElementById("info-container").appendChild(divContainer);
     removeLoader("info-container");
+    document.getElementById("submit-select").disabled = false;
   };
   const addLoader = itemId => {
     let loaderDiv = document.createElement("div");
@@ -96,4 +105,5 @@ window.addEventListener("DOMContentLoaded", event => {
       document.getElementById("loader").remove();
     }
   };
+  addSelect();
 });

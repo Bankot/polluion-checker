@@ -15,8 +15,9 @@
         <nav>
             <div class="navbar">
                 <ul class="navbar__list">
-                    <li class="navbar__list__item"><a href="#">About</a></li>
-                    <li class="navbar__list__item"><a href="#">Wiki API</a></li>
+                    <li class="navbar__list__item"><a target="_blank" href="https://github.com/Bankot">GitHub</a></li>
+                    <li class="navbar__list__item"><a target="_blank"
+                            href="https://www.mediawiki.org/wiki/API:Main_page">Wiki API</a></li>
                     <li class="navbar__list__item"><a target="_blank" href="https://openaq.org/">Pollution API</a></li>
                 </ul>
             </div>
@@ -24,14 +25,22 @@
     </header>
     <section>
         <div class="main-wrapper">
-            <div class="main-wrapper-info">
-                <h1>This app shows most polluted cities in choosen country, depending on which parameter you choose</h1>
-                <p></p>
+            <div class="main-wrapper-top">
+                <p class="main-wrapper-top__p">Select a country, and I'll show you most polluted cities in it!</p>
+                <div class="main-wrapper-top__div">
+                    <p class="main-wrapper-top__div__p">Parameter:</p>
+                    <select id="parameter">
+                        <option value="so2">so2</option>
+                        <option value="no2">no2</option>
+                        <option value="o3">o3</option>
+                        <option value="co">co</option>
+                    </select>
+                </div>
             </div>
             <div id="form" class="main-wrapper__select">
                 <label class="main-wrapper__select__label">Country:</label>
                 <select class="main-wrapper__select__select" id="country-select">
-                    <option value="qwe">Default</option>
+
                 </select>
                 <button class="main-wrapper__select__button" id="submit-select">Submit</button>
             </div>
