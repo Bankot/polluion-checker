@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Pollution Checker</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="description" content="Pollution Checker For Your Country!">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap&subset=latin-ext,vietnamese"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="navbar">
+                <ul class="navbar__list">
+                    <li class="navbar__list__item"><a href="#">About</a></li>
+                    <li class="navbar__list__item"><a href="#">Wiki API</a></li>
+                    <li class="navbar__list__item"><a target="_blank" href="https://openaq.org/">Pollution API</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <section>
+        <div class="main-wrapper">
+            <div class="main-wrapper-info">
+                <h1>This app shows most polluted cities in choosen country, depending on which parameter you choose</h1>
+                <p></p>
+            </div>
+            <div id="form" class="main-wrapper__select">
+                <label class="main-wrapper__select__label">Country:</label>
+                <select class="main-wrapper__select__select" id="country-select">
+                    <option value="qwe">Default</option>
+                </select>
+                <button class="main-wrapper__select__button" id="submit-select">Submit</button>
+            </div>
+            <div id="info-container" class="main-wrapper__info-container">
+
+
+            </div>
+        </div>
+    </section>
+    <script type="module" src="script.js"></script>
+    <script type="application/json" src="countries.json"></script>
+
+</body>
